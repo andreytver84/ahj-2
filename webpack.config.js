@@ -3,6 +3,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
     context: path.resolve(__dirname, 'src'),
@@ -27,7 +28,8 @@ module.exports = {
             patterns: [
               { from: path.resolve(__dirname, 'src/img'), to: path.resolve(__dirname, 'dist/img') }
             ],
-          })
+          }),
+        new ESLintPlugin()  
     ],
     module: {
         rules: [
