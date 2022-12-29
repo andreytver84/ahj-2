@@ -10,16 +10,16 @@ class GameGoblin {
     let number = this.getNumb(gameTds.length);
 
     if (gameTds[number].classList.contains("active")) {
-      console.log("повтор");  
-      number = number !== 15 ? number+1 : 0;           
+      console.log("повтор");
+      number = number !== 15 ? number + 1 : 0;
     }
-    gameTds.forEach(item => item.classList.remove("active"));
+    gameTds.forEach((item) => item.classList.remove("active"));
     const goblin = document.createElement("div");
-    goblin.classList.add("goblin"); 
-    console.log(number);  
+    goblin.classList.add("goblin");
+    console.log(number);
     gameTds[number].classList.add("active");
-    console.log(Number(gameTds[number].getAttribute('data-id')) - 1);
-    gameTds[number].append(goblin);    
+    console.log(Number(gameTds[number].getAttribute("data-id")) - 1);
+    gameTds[number].append(goblin);
     this.removeGoblin(goblin);
   }
   removeGoblin(td) {
