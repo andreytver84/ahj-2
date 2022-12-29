@@ -8,10 +8,10 @@ class GameGoblin {
   addGoblin() {
     const gameTds = this._element.querySelectorAll(".game-td");
     let number = this.getNumb(gameTds.length);
+
     if (gameTds[number].classList.contains("active")) {
       console.log("повтор");  
-      let newNumber = this.getNumb(gameTds.length);
-      number = number == newNumber ? this.getNumb(gameTds.length) : newNumber;           
+      number = number !== 15 ? number+1 : 0;           
     }
     gameTds.forEach(item => item.classList.remove("active"));
     const goblin = document.createElement("div");
