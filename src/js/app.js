@@ -1,28 +1,29 @@
 class GameGoblin {
   constructor(element) {
     this._element = element;
+    this.gameTds = this._element.querySelectorAll(".game-td");
+    this.goblin = document.createElement("div");
+    this.goblin.classList.add("goblin");
   }
+
   getNumb(n) {
     return Math.floor(Math.random() * n);
   }
   addGoblin() {
-    const gameTds = this._element.querySelectorAll(".game-td");
-    let number = this.getNumb(gameTds.length);
+    let number = this.getNumb(this.gameTds.length);
 
-    if (gameTds[number].classList.contains("active")) {
+    if (this.gameTds[number].classList.contains("active")) {
       console.log("повтор");
-      number = number !== 15 ? number + 1 : 0;
+      number = number !== this.gameTds.length - 1 ? number + 1 : 0;
     }
-    gameTds.forEach((item) => item.classList.remove("active"));
-    const goblin = document.createElement("div");
-    goblin.classList.add("goblin");
+    this.gameTds.forEach((item) => item.classList.remove("active"));
     console.log(number);
-    gameTds[number].classList.add("active");
-    console.log(Number(gameTds[number].getAttribute("data-id")) - 1);
-    gameTds[number].append(goblin);
-    this.removeGoblin(goblin);
+    this.gameTds[number].classList.add("active");
+    console.log(Number(this.gameTds[number].getAttribute("data-id")) - 1);
+    this.gameTds[number].append(this.goblin);
+    this.update(this.goblin);
   }
-  removeGoblin(td) {
+  update(td) {
     setTimeout(() => {
       td.remove();
       this.addGoblin();
